@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace InterfaceExercise
 {
@@ -6,39 +7,52 @@ namespace InterfaceExercise
     {
         static void Main(string[] args)
         {
-            //TODO Be sure to follow BEST PRACTICES when creating classes and interfaces
+            var subaru = new Car();
+            subaru.Make = "subaru";
+            subaru.Model = "wrx";
+            subaru.WheelCount = 4;
+            subaru.Year = 2020;
+            subaru.CoName = "subaru inc.";
+            subaru.IsElectric = false;
 
-            //Create 2 Interfaces called IVehicle & ICompany
+            var gmc = new Truck();
+            gmc.Make = "GMC";
+            gmc.Model = "Sierra";
+            gmc.Year = 2023;
+            gmc.WheelCount = 4;
+            gmc.BedLength = "6ft";
+            gmc.CoName = "GMC inc.";
 
-            //Create 3 classes called Car , Truck , & SUV
+            var lamborghini = new SUV();
+            lamborghini.Model = "Urus";
+            lamborghini.Make = "Lamborghini";
+            lamborghini.Year = 2030;
+            lamborghini.WheelCount = 4;
+            lamborghini.IsHatchback = true;
+            lamborghini.CoName = "Lamborghini inc.";
 
-            //In your IVehicle
-            
-                /* Create 4 members that Car, Truck, & SUV all have in common.
-                 * Example: All vehicles have a number of wheels... for now..
-                 */
-            
+            var parkingLot = new List<IVehicle>() { subaru, gmc, lamborghini };
 
-            //In ICompany
-            
-                /*Create 2 members that are specific to each every company
-                 * regardless of vehicle type.
-                 *
-                 *
-                 * Example: public string Logo { get; set; }
-                 */
+            foreach(var vehicle in parkingLot)
+            {
+                if(vehicle is Car)
+                {
+                    Console.WriteLine($"Make: {vehicle.Make}\nModel: {vehicle.Model}\nYear:{vehicle.Year}\n" +
+                    $"Wheel Count {vehicle.WheelCount}\nCompany: {vehicle.CoName}\nElectric {subaru.IsElectric}");
+                }
+                else if (vehicle is Truck)
+                {
+                    Console.WriteLine($"Make: {vehicle.Make}\nModel: {vehicle.Model}\nYear:{vehicle.Year}\n" +
+                    $"Wheel Count {vehicle.WheelCount}\nCompany: {vehicle.CoName}\nBedLength {gmc.BedLength}");
+                }
+                else
+                {
+                    Console.WriteLine($"Make: {vehicle.Make}\nModel: {vehicle.Model}\nYear:{vehicle.Year}\n" +
+                    $"Wheel Count {vehicle.WheelCount}\nCompany: {vehicle.CoName}\nIsHatchbcack: {lamborghini.IsHatchback}");
+                }
+                
+            }
 
-            //In each of your car, truck, and suv classes
-
-                /*Create 2 members that are specific to each class
-                 * Example: truck has a bed size while car has a trunk while suv has a cargo hold size
-                 *
-                 * Then, Set each class to inherit from both IVehicle and ICompany and implement their members.
-                 * 
-                 */
-
-            //Now, create objects of your 3 classes and give their members values;
-            //Creatively display and organize their values
         }
     }
 }
